@@ -1,19 +1,23 @@
-import React, {useState} from 'react'
-import GreetingContainer from './GreetingContainer'
+import React, {useState} from 'react';
+import {v1} from 'uuid';
+import GreetingContainer from './GreetingContainer';
 
 // types
 export type UserType = {
-    _id: any // need to fix any
     name: any // need to fix any
 }
 
 // уровень работы с глобальными данными
 function HW3() {
-    const [users, setUsers] = useState<any>([]) // need to fix any
+    const [users, setUsers] = useState<UserType[]>([]); // need to fix any ========= ASK WHY AN EMPTY OBJECT FUCKS UP THE LOGIC
 
-    const addUserCallback = (name: any) => { // need to fix any
-        setUsers([]) // need to fix
-    }
+    const addUserCallback = (name: string) => { // need to fix any
+        let newUser = {id: v1(), name}; // need to fix
+        setUsers([...users, newUser]);
+    };
+
+    console.log(users);
+
 
     return (
         <div>
@@ -28,7 +32,7 @@ function HW3() {
             {/*<AlternativeGreeting/>*/}
             <hr/>
         </div>
-    )
+    );
 }
 
-export default HW3
+export default HW3;
